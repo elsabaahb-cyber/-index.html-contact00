@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arch Stone — GRC • GRB • زخارف جبسية</title>
+  <meta name="description" content="Arch Stone — حلول معمارية متكاملة في GRC و GRB والزخارف الجبسية. تصميم — تصنيع — تركيب." />
+  <style>
+    /* ===========================================================
+       Arch Stone — One-file professional site (HTML + CSS)
+       - كل الصور داخل assets/photos/ مع مسارات جاهزة في الكود
+       - مكان iframe جوجل فورم موجود تحت قسم "اتصل بنا"
+       - مكان روابط فيسبوك و إنستغرام موجودان في الفوتر (تعليقات)
+       =========================================================== */
+
+    /* -----------------------
+       Variables / Identity
+       ----------------------- */
+    :root{
+      --bg: #0f1116;
+      --panel: #121419;
+      --muted: #9aa3b2;
+      --text: #eef2f5;
+      --line: #23262b;
+      --brand: #d3aa56;
+      --brand-2: #a88a48;
+      --accent: #e0c27a;
+      --glass: rgba(255,255,255,0.03);
+      --max-width: 1200px;
+      --radius: 12px;
+      --mono: "Cairo", Tahoma, Arial, sans-serif;
+    }
+
+    /* -----------------------
+       Basic reset & layout
+       ----------------------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; padding:0;
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.75;
+      scroll-behavior: smooth;
+    }
+    img{display:block; max-width:100%}
+    a{color:inherit; text-decoration:none}
+    .container{width:min(var(--max-width),94%); margin-inline:auto}
+
+    /* -----------------------
+       Header
+       ----------------------- */
+    .site-header{
+      position: sticky; top:0; z-index:90;
+      backdrop-filter: blur(8px) saturate(1.2);
+      background: linear-gradient(180deg, rgba(12,14,17,0.86), rgba(10,11,13,0.75));
+      border-bottom:1px solid var(--line);
+    }
+    .header-inner{
+      display:flex; align-items:center; gap:16px; padding:12px 0;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900}
+    .brand .logo{
+      width:46px; height:46px; border-radius:10px; overflow:hidden;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display:grid; place-items:center; font-weight:900; color:#111;
+    }
+    .brand .brand-name{font-size:18px}
+    .main-nav{margin-inline-start:auto; display:flex; gap:12px; align-items:center}
+    .nav-link{padding:8px 12px; border-radius:10px; font-weight:700}
+    .nav-link:hover, .nav-link.active{background:var(--panel); border:1px solid var(--line)}
+
+    .cta-whatsapp{
+      margin-inline-start:12px; background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#111; padding:8px 12px; border-radius:10px; font-weight:900
+    }
+    .burger{display:none; background:transparent; border:1px solid var(--line); color:var(--text); padding:6px 10px; border-radius:8px}
+
+    /* -----------------------
+       Hero
+       ----------------------- */
+    .hero-section{
+      padding:64px 0 40px;
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(211,170,86,0.12), transparent),
+        radial-gradient(700px 400px at 10% 10%, rgba(168,138,72,0.05), transparent);
+    }
+    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:26px; align-items:center}
+    .hero-text h1{font-size:44px; margin:0 0 8px}
+    .hero-text p.lead{color:var(--muted); margin:0 0 8px}
+    .hero-actions{display:flex; gap:10px; margin-top:14px}
+    .btn{padding:12px 18px; border-radius:12px; font-weight:800; display:inline-block; text-decoration:none}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#111; border:none}
+    .btn-ghost{background:transparent; border:1px solid var(--line)}
+    .hero-badges{list-style:none; padding:0; display:flex; gap:10px; margin-top:14px}
+    .hero-badges li{padding:8px 12px; border-radius:999px; border:1px dashed var(--line); color:var(--muted); font-size:14px}
+
+    .hero-photo{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); box-shadow:0 20px 60px rgba(0,0,0,0.45)}
+    .hero-photo img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* -----------------------
+       Features / Services
+       ----------------------- */
+    .section{padding:48px 0}
+    .section-title{font-size:28px; margin:0 0 6px}
+    .section-sub{color:var(--muted); margin:0 0 18px}
+    .features-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .feature-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent); border:1px solid var(--line); border-radius:12px; padding:16px; text-align:center}
+    .feature-photo{height:190px; border-radius:10px; overflow:hidden; margin-bottom:12px}
+    .feature-photo img{width:100%; height:100%; object-fit:cover}
+
+    /* -----------------------
+       Why-us / Stats
+       ----------------------- */
+    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center}
+    .check-list{list-style:none; padding:0}
+    .check-list li{position:relative; padding-inline-start:28px; margin:10px 0}
+    .check-list li:before{content:"✓"; position:absolute; left:0; top:0; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:#0c0e11; color:var(--accent); border:1px solid var(--line)}
+    .stats-cards{display:flex; gap:12px; justify-content:center}
+    .stat-card{background:var(--panel); padding:12px 18px; border-radius:12px; text-align:center; border:1px solid var(--line)}
+    .stat-num{font-size:28px; font-weight:900; color:var(--accent)}
+
+    /* -----------------------
+       Projects grid + lightbox (CSS-only via :target)
+       ----------------------- */
+    .projects-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .project-card{border-radius:10px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .project-card img{width:100%; height:240px; object-fit:cover; display:block}
+    .project-card figcaption{padding:12px; font-weight:700; color:var(--text)}
+
+    /* lightbox */
+    .lightbox{position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,0.82); z-index:220; padding:20px}
+    .lightbox img{max-width:96vw; max-height:86vh; border-radius:10px; border:1px solid var(--line)}
+    .lightbox:target{display:grid}
+    .lightbox .close{position:absolute; top:18px; left:18px; background:var(--panel); padding:8px 12px; border-radius:8px; text-decoration:none; color:var(--text); border:1px solid var(--line)}
+
+    /* -----------------------
+       Testimonials / Team / FAQ
+       ----------------------- */
+    .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .testi-card{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); padding:18px; border-radius:12px; border:1px solid var(--line)}
+    .testi-card p{color:var(--muted); margin-bottom:12px}
+    .testi-card footer{font-weight:900}
+
+    .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .member-card{background:var(--panel); padding:14px; border-radius:12px; text-align:center; border:1px solid var(--line)}
+    .member-card img{width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:12px}
+
+    .faq-grid{display:grid; gap:12px}
+    details{background:var(--panel); border-radius:10px; padding:12px; border:1px solid var(--line)}
+    summary{font-weight:900; cursor:pointer}
+    .faq-body{color:var(--muted); margin-top:8px}
+
+    /* -----------------------
+       Contact / Form embed placeholder
+       ----------------------- */
+    .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); border:1px solid var(--line); border-radius:12px; padding:16px}
+    .contact-card .list{list-style:none; padding:0; margin:0}
+    .contact-card .list li{margin:8px 0; color:var(--muted)}
+
+    .form-embed{min-height:360px; border-radius:10px; overflow:hidden; border:1px dashed var(--line); display:grid; place-items:center; color:var(--muted)}
+    .form-embed iframe{width:100%; height:100%; border:0}
+
+    /* -----------------------
+       CTA small + Footer + Floating buttons
+       ----------------------- */
+    .cta-box{background:linear-gradient(180deg, rgba(211,170,86,0.04), transparent); border:1px solid var(--line); padding:18px; border-radius:12px; text-align:center}
+    .site-footer{border-top:1px solid var(--line); padding:36px 0; margin-top:18px}
+    .footer-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:20px}
+    .list{list-style:none; padding:0}
+    .list li{margin:8px 0; color:var(--muted)}
+    .social-links a{display:inline-block; margin-inline:8px; padding:8px 10px; border-radius:8px; background:var(--panel); border:1px solid var(--line); color:var(--text); text-decoration:none; font-weight:800}
+    .social-links a:hover{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#111}
+
+    .floating-whatsapp{position:fixed; bottom:18px; left:18px; z-index:200; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#111; padding:10px 14px; border-radius:999px; font-weight:900; text-decoration:none}
+
+    /* -----------------------
+       Responsive
+       ----------------------- */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .features-grid{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr 1fr}
+      .testi-grid{grid-template-columns:1fr 1fr}
+      .team-grid{grid-template-columns:1fr 1fr}
+      .two-col{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .burger{display:block}
+      .main-nav{display:none}
+      body.nav-open .main-nav{display:flex; position:fixed; right:0; top:64px; background:var(--panel); flex-direction:column; padding:12px; width:260px}
+    }
+    @media (max-width:600px){
+      .projects-grid{grid-template-columns:1fr}
+      .testi-grid{grid-template-columns:1fr}
+      .team-grid{grid-template-columns:1fr}
+      .hero-text h1{font-size:28px}
+    }
+
+    /* -----------------------
+       Helpers
+       ----------------------- */
+    .text-muted{color:var(--muted)}
+    .kicker{color:var(--accent); font-weight:900}
+  </style>
+</head>
+<body>
+
+  <!-- ========================
+       HEADER
+       - logo path: assets/photos/logo.svg
+       - whatsapp link in .cta-whatsapp is editable
+     ======================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Arch Stone">
+        <div class="logo" aria-hidden="true">AS</div>
+        <span class="brand-name">Arch Stone</span>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="القسم الرئيسى">
+        <a href="#home" class="nav-link active">الرئيسية</a>
+        <a href="#about" class="nav-link">من نحن</a>
+        <a href="#services" class="nav-link">خدماتنا</a>
+        <a href="#projects" class="nav-link">مشاريعنا</a>
+        <a href="#testimonials" class="nav-link">شهادات</a>
+        <a href="#contact" class="nav-link">اتصل بنا</a>
+      </nav>
+
+      <a class="cta-whatsapp" href="https://wa.me/201000000000" target="_blank" rel="noopener">واتساب</a>
+      <button class="burger" aria-label="قائمة" onclick="document.body.classList.toggle('nav-open')">☰</button>
+    </div>
+  </header>
+
+  <!-- ========================
+       HERO
+       - image file used here: assets/photos/hero.jpg
+       - comment shows path to replace if needed
+     ======================== -->
+  <section id="home" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>نصنع تفاصيل تتكلم</h1>
+        <p class="lead">Arch Stone — خبراء في تصميم وتنفيذ الواجهات والأعمال الزخرفية باستخدام <strong>GRC</strong> و <strong>GRB</strong> والزخارف الجبسية.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">اطلب عرض سعر</a>
+          <a href="#projects" class="btn btn-ghost">شاهد أعمالنا</a>
+        </div>
+        <ul class="hero-badges">
+          <li>تصميم حسب الطلب</li>
+          <li>توريد وتركيب محترف</li>
+          <li>دعم ما بعد التسليم</li>
+        </ul>
+      </div>
+
+      <div class="hero-photo" role="img" aria-label="بانر Arch Stone">
+        <!-- مسار الصورة: assets/photos/hero.jpg -->
+        <img src="assets/photos/hero.jpg" alt="بانر Arch Stone">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SERVICES (Features)
+       - images:
+         assets/photos/feature-grc.jpg
+         assets/photos/feature-grb.jpg
+         assets/photos/feature-gypsum.jpg
+     ======================== -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">خدماتنا</h2>
+      <p class="section-sub">من التصميم إلى التركيب — حلول متكاملة في GRC و GRB والزخارف الجبسية.</p>
+
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-photo">
+            <!-- مسار الصورة: assets/photos/feature-grc.jpg -->
+            <img src="imagesmj.jpg" alt="GRC">
+          </div>
+          <h3>GRC</h3>
+          <p class="text-muted">ألواح معمارية وخامات مرنة للأشكال المعقدة، متانة عالية ومظهر رائع.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-photo">
+            <!-- مسار الصورة: assets/photos/feature-grb.jpg -->
+            <img src="images/k.jpg" alt="GRB">
+          </div>
+          <h3>GRB</h3>
+          <p class="text-muted">حلول خفيفة الوزن بمظهر حجري صناعي، مناسبة للواجهات والتشطيبات الداخلية.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-photo">
+            <!-- مسار الصورة: assets/photos/feature-gypsum.jpg -->
+            <img src="images/geb.jpg.jpg" alt="زخارف جبسية">
+          </div>
+          <h3>زخارف جبسية</h3>
+          <p class="text-muted">كورنيشات، تيجان، قباب وتفاصيل زخرفية تعطي للمكان فخامة وأناقة.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       WHY US + STATS
+     ======================== -->
+  <section class="section why-us">
+    <div class="container two-col">
+      <div>
+        <h2 class="section-title">ليه تختارنا؟</h2>
+        <p class="section-sub">نظام عمل متكامل من التصميم حتى التسليم ونظام جودة مُطبّق على كل مشروع.</p>
+        <ul class="check-list">
+          <li>تصميم مخصص يتماشى مع هوية المشروع</li>
+          <li>مواد ومواصفات عالية الجودة</li>
+          <li>تركيب دقيق ووقت تسليم محدد</li>
+          <li>دعم وخدمة ما بعد البيع</li>
+        </ul>
+      </div>
+
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-num">120+</div>
+          <div class="stat-label">مشروع مُنجز</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">15</div>
+          <div class="stat-label">سنوات خبرة</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">رضا العملاء</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       PROJECTS (grid)
+       - project images:
+         assets/photos/proj1.jpg ... assets/photos/proj6.jpg
+     ======================== -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <h2 class="section-title">مشاريع مختارة</h2>
+      <p class="section-sub">نماذج تنفيذية من واجهات وزخارف سقطت بعناية.</p>
+
+      <div class="projects-grid">
+        <figure class="project-card">
+          <!-- مسار الصورة: assets/photos/proj1.jpg -->
+          <a href="#p1"><img src="assets/photos/proj1.jpg" alt="مشروع 1"></a>
+          <figcaption>واجهة كلاسيكية - القاهرة</figcaption>
+        </figure>
+
+        <figure class="project-card">
+          <!-- مسار الصورة: assets/photos/proj2.jpg -->
+          <a href="#p2"><img src="assets/photos/proj2.jpg" alt="مشروع 2"></a>
+          <figcaption>قبب وزخارف - الشيخ زايد</figcaption>
+        </figure>
+
+        <figure class="project-card">
+          <!-- مسار الصورة: assets/photos/proj3.jpg -->
+          <a href="#p3"><img src="assets/photos/proj3.jpg" alt="مشروع 3"></a>
+          <figcaption>واجهة GRB حديثة</figcaption>
+        </figure>
+
+        <figure class="project-card">
+          <!-- مسار الصورة: assets/photos/proj4.jpg -->
+          <a href="#p4"><img src="assets/photos/proj4.jpg" alt="مشروع 4"></a>
+          <figcaption>أعمدة وتيجان</figcaption>
+        </figure>
+
+        <figure class="project-card">
+          <!-- مسار الصورة: assets/photos/proj5.jpg -->
+          <a href="#p5"><img src="assets/photos/proj5.jpg" alt="مشروع 5"></a>
+          <figcaption>كورنيشات وأسقف</figcaption>
+        </figure>
+
+        <figure class="project-card">
+          <!-- مسار الصورة: assets/photos/proj6.jpg -->
+          <a href="#p6"><img src="assets/photos/proj6.jpg" alt="مشروع 6"></a>
+          <figcaption>تفاصيل خاصة حسب الطلب</figcaption>
+        </figure>
+      </div>
+
+      <!-- lightbox CSS-only -->
+      <div id="p1" class="lightbox"><a href="#projects" class="close">إغلاق</a><img src="assets/photos/proj1.jpg" alt="مشروع 1"></div>
+      <div id="p2" class="lightbox"><a href="#projects" class="close">إغلاق</a><img src="assets/photos/proj2.jpg" alt="مشروع 2"></div>
+      <div id="p3" class="lightbox"><a href="#projects" class="close">إغلاق</a><img src="assets/photos/proj3.jpg" alt="مشروع 3"></div>
+      <div id="p4" class="lightbox"><a href="#projects" class="close">إغلاق</a><img src="assets/photos/proj4.jpg" alt="مشروع 4"></div>
+      <div id="p5" class="lightbox"><a href="#projects" class="close">إغلاق</a><img src="assets/photos/proj5.jpg" alt="مشروع 5"></div>
+      <div id="p6" class="lightbox"><a href="#projects" class="close">إغلاق</a><img src="assets/photos/proj6.jpg" alt="مشروع 6"></div>
+    </div>
+  </section>
+
+  <!-- ========================
+       TESTIMONIALS
+     ======================== -->
+  <section id="testimonials" class="section testimonials">
+    <div class="container">
+      <h2 class="section-title">آراء العملاء</h2>
+      <p class="section-sub">بعض الكلمات من عملائنا بعد تنفيذ المشاريع.</p>
+
+      <div class="testi-grid">
+        <blockquote class="testi-card">
+          <p>عمل احترافي وسرعة في التنفيذ. فريق Arch Stone نفّذ المشروع كما وعدوا.</p>
+          <footer>- فندق النخبة</footer>
+        </blockquote>
+
+        <blockquote class="testi-card">
+          <p>التفاصيل الفنية كانت دقيقة جدًا، والنهاية كانت رائعة من حيث الشكل والمتانة.</p>
+          <footer>- فيلا خاصة</footer>
+        </blockquote>
+
+        <blockquote class="testi-card">
+          <p>التعامل المرن والدعم بعد التسليم كان فارقًا كبيرًا بالنسبة لينا.</p>
+          <footer>- مطعم ليلي</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       TEAM (اختياري)
+       - team images:
+         assets/photos/team1.jpg, team2.jpg, team3.jpg
+     ======================== -->
+  <section class="section team">
+    <div class="container">
+      <h2 class="section-title">فريق العمل</h2>
+      <p class="section-sub">مهندسون وفنيون مختصون في التصميم والتركيب.</p>
+
+      <div class="team-grid">
+        <div class="member-card">
+          <!-- مسار الصورة: assets/photos/team1.jpg -->
+          <img src="med/we.jpg.jpg" alt="مدير مشروع">
+          <h4>مدير المشروع</h4>
+          <p class="text-muted">إدارة التنفيذ وضبط الجودة.</p>
+        </div>
+
+        <div class="member-card">
+          <!-- مسار الصورة: assets/photos/team2.jpg -->
+          <img src="assets/photos/team2.jpg" alt="مهندس تصميم">
+          <h4>مهندس تصميم</h4>
+          <p class="text-muted">نمذجة ثلاثية الأبعاد ورسم تنفيذي.</p>
+        </div>
+
+        <div class="member-card">
+          <!-- مسار الصورة: assets/photos/team3.jpg -->
+          <img src="assets/photos/team3.jpg" alt="فريق تركيب">
+          <h4>فريق التركيب</h4>
+          <p class="text-muted">تركيب محترف وفق المعايير.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       FAQ
+     ======================== -->
+  <section class="section faq">
+    <div class="container">
+      <h2 class="section-title">الأسئلة الشائعة</h2>
+      <div class="faq-grid">
+        <details>
+          <summary>هل تقدمون ضمانًا على الأعمال؟</summary>
+          <div class="faq-body">نعم — نعرض ضمانًا حسب نوع المشروع واتفاقية العقد (عادة من سنة إلى 5 سنوات حسب الحالة).</div>
+        </details>
+
+        <details>
+          <summary>ما مدة تنفيذ مشروع واجهة متوسطة؟</summary>
+          <div class="faq-body">تختلف حسب الحجم والتعقيد؛ مشروع واجهة متوسطة قد يستغرق 4–8 أسابيع من التصميم حتى التركيب.</div>
+        </details>
+
+        <details>
+          <summary>هل تقدمون خدمات صيانة بعد التسليم؟</summary>
+          <div class="faq-body">نعم، نقدم عقود صيانة وقطع غيار حسب الحاجة.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       CONTACT — Google Form embed area
+       - Place your Google Form iframe src in the iframe below
+       - Example iframe (commented) shows format — replace the src with your form's embed src
+     ======================== -->
+  <section id="contact" class="section contact">
+    <div class="container two-col">
+      <div>
+        <h2 class="section-title">تواصل معنا</h2>
+        <p class="section-sub">ابعت لنا تفاصيل مشروعك (مقاسات، موقع، صور) وسنرسل لك عرضًا فنيًا وماليًا.</p>
+
+        <div class="card contact-card">
+          <h4>معلومات التواصل</h4>
+          <ul class="list">
+            <li>هاتف: 0100 000 0000</li>
+            <li>إيميل: info@arch-stone.eg</li>
+            <li>العنوان: القاهرة، مصر</li>
+          </ul>
+        </div>
+
+        <div class="card contact-card" style="margin-top:12px">
+          <h4>أوقات العمل</h4>
+          <p class="text-muted">السبت - الخميس: 9 صباحًا - 6 مساءً</p>
+        </div>
+      </div>
+
+      <div>
+        <h4>نموذج طلب عرض سعر</h4>
+        <p class="section-sub">املأ نموذج طلب السعر وسيصلك الرد من فريقنا.</p>
+
+        <div class="form-embed card">
+          <!--
+             مثال (معلّق). استبدل قيمة src بعنوان الـ embed الخاص بالفورم:
+             <iframe src="https://docs.google.com/forms/d/e/XXXXXXX/viewform?embedded=true"></iframe>
+             الآن السطر التالي جاهز لتجلس عليه فورم جوجل:
+          -->
+          <!-- مسار iframe جوجل فورم: ضع src الفورم داخل وسم iframe أدناه -->
+          <iframe src="" title="نموذج طلب عرض سعر" aria-label="نموذج طلب عرض سعر"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       CTA small
+     ======================== -->
+  <section class="section cta-small">
+    <div class="container cta-box">
+      <h3>جاهز تبدأ مشروعك؟</h3>
+      <p>ابعت لنا المقاسات أو مخطط سريع وسنعد لك عرضًا خلال 48 ساعة.</p>
+      <a href="#contact" class="btn btn-primary">اطلب عرض سعر</a>
+    </div>
+  </section>
+
+  <!-- ========================
+       FOOTER
+       - Place your social links in the href attributes below
+       - Facebook link: replace href value for Facebook
+       - Instagram link: replace href value for Instagram
+     ======================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Arch Stone</h4>
+        <p class="text-muted">حلول معمارية في GRC و GRB والزخارف الجبسية. جودة تُبنى لتدوم.</p>
+      </div>
+
+      <div>
+        <h4>روابط سريعة</h4>
+        <ul class="list">
+          <li><a href="#about">عن الشركة</a></li>
+          <li><a href="#services">خدماتنا</a></li>
+          <li><a href="#projects">مشاريعنا</a></li>
+          <li><a href="#contact">اتصل بنا</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>تابعنا</h4>
+        <div class="social-links">
+          <!-- Facebook: استبدل الرابط أدناه برابط صفحة شركتك -->
+          <a href="https://www.facebook.com/YourPage" target="_blank" rel="noopener">Facebook</a>
+          <!-- Instagram: استبدل الرابط أدناه برابط صفحة شركتك -->
+          <a href="https://www.instagram.com/YourPage" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <p style="margin-top:12px; color:var(--muted)">© 2025 Arch Stone. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================
+       Floating WhatsApp quick link
+       - Edit number inside href if needed
+     ======================== -->
+  <a class="floating-whatsapp" href="https://wa.me/201000000000" target="_blank" rel="noopener">واتساب</a>
+
+  <!-- End of body -->
+</body>
+</html>
